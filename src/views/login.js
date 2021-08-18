@@ -1,5 +1,7 @@
 import React from 'react'
 
+import  {withRouter} from 'react-router-dom'
+
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
 
@@ -13,6 +15,10 @@ class Login extends React.Component {
   enter = () => {
     console.log('Email: ', this.state.email)
     console.log('Password', this.state.password)
+  }
+
+  prepareToRegister = () => {
+    this.props.history.push('/userRegister')
   }
 
   render(){           
@@ -46,8 +52,8 @@ class Login extends React.Component {
                          </FormGroup>
                         
                          <div className="btn-toolbar mt-3 ">
-                        <button onClick={this.enter} className="btn btn-success me-sm-2 ">Enter</button>
-                        <button className="btn btn-danger">Register</button>
+                        <button onClick={this.enter} className="btn btn-success me-sm-2">Enter</button>
+                        <button onClick={this.prepareToRegister} className="btn btn-danger">Register</button>
                          </div>
 
                       </fieldset>
@@ -62,4 +68,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default withRouter ( Login )

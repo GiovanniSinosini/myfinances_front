@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { withRouter } from 'react-router-dom'
+
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
 
@@ -14,6 +16,10 @@ class UserRegister extends React.Component{
 
   register = () => {
     console.log(this.state)
+  }
+
+  cancel = () => {
+    this.props.history.push('/login')
   }
 
   render(){
@@ -57,7 +63,7 @@ class UserRegister extends React.Component{
 
                 <div className="btn-toolbar mt-3 ">
                   <button onClick={this.register} className="btn btn-success me-sm-2 ">Enter</button>
-                  <button className="btn btn-danger">Cancel</button>
+                  <button onClick={this.cancel} className="btn btn-danger">Cancel</button>
                 </div>
               </div>
             </div>
@@ -67,4 +73,4 @@ class UserRegister extends React.Component{
   }
 }
 
-export default UserRegister
+export default withRouter ( UserRegister )
