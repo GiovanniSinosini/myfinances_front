@@ -26,6 +26,7 @@ class Login extends React.Component {
                                     <div className="col-lg-12">
                                         <div className="bs-Component">
                                             <fieldset>
+                                                
                                                <FormGroup label="Email: *" htmlFor="exampleInputEmail1">
                                                     <input type="email" 
                                                     value={this.state.email}
@@ -44,10 +45,12 @@ class Login extends React.Component {
                                                     id="exampleInputPassword1" 
                                                     placeholder="Password"/>
                                                </FormGroup>
+                                              
                                                <div className="btn-toolbar mt-3 ">
                                                 <button onClick={this.enter} className="btn btn-success me-sm-2 ">Enter</button>
                                                 <button className="btn btn-danger">Register</button>
                                                </div>
+
                                             </fieldset>
                                         </div>
                                     </div>
