@@ -18,7 +18,7 @@ function Navbar() {
     </button>
     <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav">
-            <NavbarItem href="#/" label="Home" />
+            <NavbarItem href="#/home" label="Home" />
             <NavbarItem href="#/userRegister" label="Register"/>
             <NavbarItem href="#/" label="Postings"/>
             <NavbarItem href="#/login" label="Login"/>
