@@ -1,17 +1,16 @@
 import React from 'react';
 
-//import Login from './views/login';
-import UserRegister from './views/userRegister';
-
 import 'bootswatch/dist/flatly/bootstrap.css'
-import './custom.css'
+import '../../src/custom.css'
+
+import Routes from './routes'
 
 class App extends React.Component {
 
   render(){ 
       return (
         <div>
-          <UserRegister />
+          <Routes />
         </div>
       )
   }
