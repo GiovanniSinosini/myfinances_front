@@ -1,9 +1,11 @@
 import React from 'react'
 
 import  {withRouter} from 'react-router-dom'
+import axios from 'axios'
 
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
+
 
 class Login extends React.Component {
 
@@ -13,8 +15,15 @@ class Login extends React.Component {
   }
 
   enter = () => {
-    console.log('Email: ', this.state.email)
-    console.log('Password', this.state.password)
+    axios.post('http://localhost:8080/api/users/authentication', {
+      email: this.state.email,
+      password: this.state.password
+
+    }).then ( response =>{
+      console.log(response)
+    }).catch ( error => {
+      console.log(error.response)
+    })
   }
 
   prepareToRegister = () => {
