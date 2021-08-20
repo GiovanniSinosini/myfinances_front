@@ -1,7 +1,8 @@
 import React from 'react'
 
 import  {withRouter} from 'react-router-dom'
-import axios from 'axios'
+
+import UserService from '../app/service/userService'
 
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
@@ -15,11 +16,15 @@ class Login extends React.Component {
     errorMessage: null
   }
 
+  constructor(){
+    super();
+    this.userService = new UserService();
+  }
+
   enter = () => {
-    axios
-      .post('http://localhost:8080/api/users/authentication', {
-        email: this.state.email,
-        password: this.state.password
+    this.userService.authenticate({
+      email: this.state.email,
+      password: this.state.password
     }).then ( response =>{
         localStorage.setItem('_user_logged', JSON.stringify(response.data) )
         this.props.history.push('/home')
