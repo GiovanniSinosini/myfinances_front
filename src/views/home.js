@@ -1,6 +1,7 @@
 import React from 'react'
 
 import UserService from '../app/service/userService'
+import LocalStorageService from '../app/service/localStorageService'
 
 class Home extends React.Component {
 
@@ -14,8 +15,7 @@ class Home extends React.Component {
     }
 
     componentDidMount(){
-      const userLoggedString = localStorage.getItem('_user_logged')
-      const userLoggedObject = JSON.parse(userLoggedString)
+      const userLoggedObject = LocalStorageService.getItem('_user_logged')
 
       this.userService
           .getBalance(userLoggedObject.id)
