@@ -4,6 +4,7 @@ import  {withRouter} from 'react-router-dom'
 
 import UserService from '../app/service/userService'
 import LocalStorageService from '../app/service/localStorageService'
+import { errorMessage } from '../components/toastr'
 
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
@@ -13,8 +14,7 @@ class Login extends React.Component {
 
   state = {
     email: '',
-    password: '',
-    errorMessage: null
+    password: ''
   }
 
   constructor(){
@@ -30,7 +30,7 @@ class Login extends React.Component {
         LocalStorageService.addItem('_user_logged', response.data)
         this.props.history.push('/home')
     }).catch ( error => {
-        this.setState( {errorMessage: error.response.data} )
+         errorMessage(error.response.data)
     })
   }
 
@@ -44,9 +44,6 @@ class Login extends React.Component {
           <div className="col-md-6" style={ {position:'relative', left: '300px'}}>
             <div className="bs-docs-section">
               <Card title="Login">
-                <div>
-                  <span color="red">{this.state.errorMessage}</span>
-                </div>
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="bs-Component">
