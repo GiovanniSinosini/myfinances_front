@@ -11,18 +11,19 @@ class Login extends React.Component {
 
   state = {
     email: '',
-    password: ''
+    password: '',
+    errorMessage: null
   }
 
   enter = () => {
-    axios.post('http://localhost:8080/api/users/authentication', {
-      email: this.state.email,
-      password: this.state.password
-
+    axios
+      .post('http://localhost:8080/api/users/authentication', {
+        email: this.state.email,
+        password: this.state.password
     }).then ( response =>{
-      console.log(response)
+        this.props.history.push('/home')
     }).catch ( error => {
-      console.log(error.response)
+        this.setState( {errorMessage: error.response.data} )
     })
   }
 
@@ -36,11 +37,13 @@ class Login extends React.Component {
           <div className="col-md-6" style={ {position:'relative', left: '300px'}}>
             <div className="bs-docs-section">
               <Card title="Login">
+                <div>
+                  <span color="red">{this.state.errorMessage}</span>
+                </div>
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="bs-Component">
                       <fieldset>
-                        
                          <FormGroup label="Email: *" htmlFor="exampleInputEmail1">
                           <input type="email" 
                           value={this.state.email}
