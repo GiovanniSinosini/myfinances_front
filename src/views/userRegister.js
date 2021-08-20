@@ -4,6 +4,9 @@ import { withRouter } from 'react-router-dom'
 
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
+import {errorMessage, successMessage} from '../components/toastr'
+
+import UserService from '../app/service/userService'
 
 class UserRegister extends React.Component{
 
@@ -14,8 +17,25 @@ class UserRegister extends React.Component{
     passwordRepeat: ''
   }
 
+  constructor(){
+    super();
+    this.userService = new UserService();
+  }
+
   register = () => {
-    console.log(this.state)
+    const user = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    this.userService.saveUser(user)
+      .then( response => {
+        successMessage('Successfully registered user. Login to access the system.')
+        this.props.history.push('/login')
+      }).catch( error => {
+        errorMessage(error.response.data)
+      })
   }
 
   cancel = () => {
