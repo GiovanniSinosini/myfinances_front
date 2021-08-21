@@ -22,7 +22,37 @@ class UserRegister extends React.Component{
     this.userService = new UserService();
   }
 
+  validate(){
+    const msgs = []
+
+    if(!this.state.name){
+      msgs.push('The NAME FIELD is required.')
+    }
+    if(!this.state.email){
+      msgs.push('The EMAIL FIELD is required.')
+    } else if (!this.state.email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/) ){
+      msgs.push('Email invalid. Try again.')
+    }
+
+    if(!this.state.password || !this.state.passwordRepeat){
+      msgs.push('The PASSWORD FIELD is required.')
+    } else if (this.state.password !== this.state.passwordRepeat) {
+      msgs.push('The passwords are different. Try again.')
+    }
+    return msgs
+  }
+
   register = () => {
+
+    const msgs = this.validate();
+
+    if(msgs && msgs.length > 0){
+      msgs.forEach( (msg, index) => {
+        errorMessage (msg)
+      })
+      return false;
+    }
+
     const user = {
       name: this.state.name,
       email: this.state.email,
