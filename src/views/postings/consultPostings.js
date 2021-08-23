@@ -6,8 +6,17 @@ import FormGroup from '../../components/form-group';
 import SelectMenu from '../selectMenu';
 import PostingsTable from './postingsTable';
 
-
 class ConsultPostings extends React.Component{
+
+    state = {
+        year: '',
+        month: '',
+        type: ''
+    }
+
+    search = () => {
+        console.log(this.state)
+    }
 
   render(){
   const months = [
@@ -45,34 +54,41 @@ class ConsultPostings extends React.Component{
                         <input type="text" 
                         className="form-control" 
                         id="inputYear" 
-                        aria-describedby="emailHelp" placeholder="Enter year."/>
+                        value={this.state.year}
+                        onChange={e => this.setState( {year: e.target.value} )}
+                        placeholder="Enter year"/>
                     </FormGroup>
                     <FormGroup htmlFor="inputMonth" label="Month: ">
-                        <SelectMenu id="inputMonth" className="form-select" list={months} />
+                        <SelectMenu id="inputMonth" 
+                                    className="form-select" 
+                                    list={months}
+                                    value={this.state.month}
+                                    onChange={e => this.setState( {month: e.target.value} )} />
                     </FormGroup>
                     <FormGroup htmlFor="inputType" label="Type Posting: ">
-                        <SelectMenu id="inputType" className="form-select" list={types} />
+                        <SelectMenu id="inputType" 
+                                    className="form-select" 
+                                    list={types} 
+                                    value={this.state.type}
+                                    onChange={e => this.setState( {type: e.target.value} )}/>
                     </FormGroup>
-
-                        <div className="btn-toolbar mt-3 ">
-                            <button className="btn btn-success me-sm-2">Search</button>
-                            <button className="btn btn-danger">Register</button>
-                        </div>
+                    <div className="btn-toolbar mt-3 ">
+                        <button onClick={this.search} className="btn btn-success me-sm-2">Search</button>
+                        <button className="btn btn-danger">Register</button>
                     </div>
                 </div>
             </div>
-            <br/>
-        
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="bs-component">
-                        <PostingsTable postings={postings}/>
-                    </div>
+        </div>
+        <br/>
+        <div className="row">
+            <div className="col-md-12">
+                <div className="bs-component">
+                    <PostingsTable postings={postings}/>
                 </div>
             </div>
+        </div>
     </Card>
-  )
-  }
+  )}
 }
 
 export default withRouter( ConsultPostings );
