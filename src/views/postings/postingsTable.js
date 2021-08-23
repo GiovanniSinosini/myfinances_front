@@ -1,13 +1,14 @@
 import React from 'react'
+import currencyFormatter from 'currency-formatter'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default props => {
 
     const rows = props.postings.map ( posting => {
         return(
-            <tr key="posting.id">
+            <tr key={posting.id}>
                 <td>{posting.description}</td>
-                <td>{posting.value}</td>
+                <td>{currencyFormatter.format(posting.value, { code: 'EUR' })}</td>
                 <td>{posting.type}</td>
                 <td>{posting.month}</td>
                 <td>{posting.status}</td>
