@@ -21,7 +21,7 @@ class RegisterPosting extends React.Component {
         const months = this.postingsService.getListMonths();
 
         return(
-            <Card>
+            <Card title="Register Posting">
                 <div className="row">
                     <div className="col-md-12">
                     <FormGroup id="inputDescription" label="Description: *">
@@ -37,7 +37,7 @@ class RegisterPosting extends React.Component {
                     </div>
                     <div className="col-md-6">
                         <FormGroup id="inputMonth" label="Month: *">
-                            <SelectMenu id="inputMonth" list={months}/>
+                            <SelectMenu id="inputMonth" list={months} className="form-select"/>
                         </FormGroup>
                     </div>
                     <div className="col-md-4">
@@ -47,13 +47,17 @@ class RegisterPosting extends React.Component {
                     </div>
                     <div className="col-md-4">
                         <FormGroup id="inputType" label="Type: *">
-                            <SelectMenu id="inputType" list={types}/>
+                                <SelectMenu id="inputType" list={types} className="form-select"/>
                         </FormGroup>
                     </div>
                     <div className="col-md-4">
                         <FormGroup id="inputStatus" label="Status: ">
-                            <SelectMenu/>
+                        <input type="text" className="form-control" disabled/>
                         </FormGroup>
+                    </div>
+                    <div className="btn-toolbar mt-3 ">
+                        <button className="btn btn-success me-sm-2 ">Save</button>
+                        <button onClick={this.cancel} className="btn btn-danger">Cancel</button>
                     </div>
                 </div>
             </Card>
