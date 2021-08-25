@@ -86,6 +86,10 @@ class ConsultPostings extends React.Component{
         });
     }
 
+    preparRegister = () => {
+        this.props.history.push('/registerPostings')
+    }
+
   render(){
   
     const months = this.postingService.getListMonths();
@@ -136,7 +140,8 @@ class ConsultPostings extends React.Component{
                         </FormGroup>
                         <div className="btn-toolbar mt-3 ">
                             <button onClick={this.search} className="btn btn-success me-sm-2">Search</button>
-                            <button className="btn btn-danger">Register</button>
+                            <button className="btn btn-danger"
+                                    onClick={this.preparRegister} >Register</button>
                         </div>
                     </div>
                 </div>

@@ -5,13 +5,15 @@ import FormGroup from '../../components/form-group'
 import SelectMenu from '../../components/selectMenu'
 
 import PostingsService from '../../app/service/postingsService'
+import LocalStorageService from '../../app/service/localStorageService'
 
 import { withRouter } from 'react-router-dom'
+import * as messages from '../../components/toastr'
 
 class RegisterPosting extends React.Component {
 
     state = {
-        id: null,
+        id: '',
         description: '',
         value: '',
         month: '',
@@ -33,7 +35,20 @@ class RegisterPosting extends React.Component {
     }
 
     submit = () => {
-        console.log(this.state)
+        const userLogged = LocalStorageService.getItem('_user_logged')
+
+        const {description, value, month, year, type} = this.state;
+        const posting = {description, value, month, year, type, user: userLogged.id};
+
+        this.postingsService
+                .save(posting)
+                .then( response => {
+                    this.props.history.push('/consultPostings')
+                    messages.successMessage('Posting saved successfuly.')
+                }).catch( error => {
+                    messages.errorMessage(error.response.data)
+                })
+
     }
 
     render(){
@@ -109,7 +124,10 @@ class RegisterPosting extends React.Component {
                     </div>
                     <div className="btn-toolbar mt-3 ">
                         <button onClick={this.submit} className="btn btn-success me-sm-2 ">Save</button>
-                        <button onClick={this.cancel} className="btn btn-danger">Cancel</button>
+                        <button className="btn btn-danger"
+                                 onClick={e => this.props.history.push('/consultPostings')}>
+                                Cancel
+                        </button>
                     </div>
                 </div>
             </Card>

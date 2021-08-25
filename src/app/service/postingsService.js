@@ -71,6 +71,10 @@ export default class PostingsService extends ApiService{
         return this.delete(`/${id}`)
     }
 
+    save(posting){
+        return this.post('/', posting)
+    }
+
 
 
 

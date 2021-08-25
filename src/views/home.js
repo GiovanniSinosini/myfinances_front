@@ -34,11 +34,11 @@ class Home extends React.Component {
             <hr className="my-4"/>
             <p className="lead">
                 <a className="btn btn-primary btn-lg me-sm-2" 
-                href="#/UserRegister" 
+                href="#/userRegister" 
                 role="button"><i className="fa fa-users"></i>  Register User</a>
                 
                 <a className="btn btn-danger btn-lg" 
-                href="#/" 
+                href="#/registerPostings" 
                 role="button"><i className="fa fa-users"></i>  Register Postings</a>
             </p>
          </div> 
