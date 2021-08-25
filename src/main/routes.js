@@ -6,6 +6,7 @@ import Login from '../views/login'
 import UserRegister from '../views/userRegister';
 import Home from '../views/home'
 import ConsultPostings from '../views/postings/consultPostings';
+import RegisterPostings from '../views/postings/registerPosting';
 
 function Routes(){
     return(
@@ -15,6 +16,7 @@ function Routes(){
                 <Route path="/login" component={Login}/>
                 <Route path="/userRegister" component={UserRegister}/>
                 <Route path="/consultPostings" component={ConsultPostings}/>
+                <Route path="/registerPostings" component={RegisterPostings}/>
             </Switch>
         </HashRouter>
     )
