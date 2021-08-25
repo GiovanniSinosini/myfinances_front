@@ -13,7 +13,16 @@ export default props => {
                 <td>{posting.month}</td>
                 <td>{posting.status}</td>
                 <td>
-                
+                    <button type="button" 
+                            className="btn btn-primary me-sm-2" 
+                            onClick={ e => props.edit(posting.id)}>
+                            Edit
+                    </button>
+                    <button type="button" 
+                            className="btn btn-danger" 
+                            onClick={ e => props.delete(posting.id)}>
+                                Delete
+                    </button>   
                 </td>
             </tr>
         )

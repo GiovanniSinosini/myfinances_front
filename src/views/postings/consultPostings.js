@@ -43,15 +43,20 @@ class ConsultPostings extends React.Component{
             status: this.state.status,
             user: userLogged.id
         }
-        console.log(postingFilter)
-
-        this.postingService
+            this.postingService
             .search(postingFilter)
             .then ( response => {
                 this.setState ( {postings: response.data} )
             }).catch ( error => {
                 console.log(error)
             })
+    }
+    edit = (id) => {
+        console.log('editing posting', id)
+    }
+
+    delete = (id) => {
+        console.log('deleting', id)
     }
 
   render(){
@@ -113,7 +118,9 @@ class ConsultPostings extends React.Component{
         <div className="row">
             <div className="col-md-12">
                 <div className="bs-component">
-                    <PostingsTable postings={this.state.postings}/>
+                    <PostingsTable postings={this.state.postings}
+                                   delete={this.delete}
+                                   edit={this.edit} />
                 </div>
             </div>
         </div>
