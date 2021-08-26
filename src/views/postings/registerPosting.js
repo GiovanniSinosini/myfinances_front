@@ -19,12 +19,26 @@ class RegisterPosting extends React.Component {
         month: '',
         year: '',
         type: '',
-        status: ''
+        status: '',
+        user: ''
     }
 
     constructor(){
         super();
         this.postingsService = new PostingsService();
+    }
+
+    componentDidMount(){
+        const params = this.props.match.params
+        if(params.id){
+            this.postingsService
+                .getById(params.id)
+                .then(response => {
+                    this.setState( {...response.data} )
+                }).catch( error => {
+                    messages.errorMessage(error.response.data)
+                })
+        }
     }
 
     handleChange = (event) => {
@@ -49,6 +63,21 @@ class RegisterPosting extends React.Component {
                     messages.errorMessage(error.response.data)
                 })
 
+    }
+
+    updatePosting= () => {
+        const {description, value, month, year, type, status, user, id} = this.state;
+
+        const posting = {description, value, month, year, type, status, user, id};
+
+        this.postingsService
+                .updatePosting(posting)
+                .then( response => {
+                    this.props.history.push('/consultPostings')
+                    messages.successMessage('Posting updated successfuly.')
+                }).catch( error => {
+                    messages.errorMessage(error.response.data)
+                })
     }
 
     render(){
@@ -124,6 +153,7 @@ class RegisterPosting extends React.Component {
                     </div>
                     <div className="btn-toolbar mt-3 ">
                         <button onClick={this.submit} className="btn btn-success me-sm-2 ">Save</button>
+                        <button onClick={this.updatePosting} className="btn btn-success me-sm-2 ">Update</button>
                         <button className="btn btn-danger"
                                  onClick={e => this.props.history.push('/consultPostings')}>
                                 Cancel

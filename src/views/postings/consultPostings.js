@@ -55,7 +55,7 @@ class ConsultPostings extends React.Component{
             })
     }
     edit = (id) => {
-        console.log('editing posting', id)
+        this.props.history.push(`/registerPostings/${id}`)
     }
 
     delete = ( posting ) => {

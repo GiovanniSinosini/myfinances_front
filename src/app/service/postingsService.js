@@ -67,6 +67,10 @@ export default class PostingsService extends ApiService{
         return this.get(params)
     }
 
+    getById(id){
+        return this.get(`/${id}`);
+    }
+
     deletePosting(id){
         return this.delete(`/${id}`)
     }
@@ -75,7 +79,8 @@ export default class PostingsService extends ApiService{
         return this.post('/', posting)
     }
 
-
-
+    updatePosting (posting){
+        return this.put(`/${posting.id}`, posting)
+    }
 
 }

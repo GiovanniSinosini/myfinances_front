@@ -16,7 +16,7 @@ function Routes(){
                 <Route path="/login" component={Login}/>
                 <Route path="/userRegister" component={UserRegister}/>
                 <Route path="/consultPostings" component={ConsultPostings}/>
-                <Route path="/registerPostings" component={RegisterPostings}/>
+                <Route path="/registerPostings/:id?" component={RegisterPostings}/>
             </Switch>
         </HashRouter>
     )
