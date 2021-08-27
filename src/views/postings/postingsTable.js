@@ -13,25 +13,27 @@ export default props => {
                 <td>{posting.month}</td>
                 <td>{posting.status}</td>
                 <td>
-                    <button type="button" 
+                    <button type="button" title="Effective" 
+                            disabled={ posting.status !== 'PENDING'}
                             className="btn btn-success me-sm-2" 
                             onClick={ e => props.updateStatus (posting, 'EFFECTIVE')}>
-                            Effective
+                            <i className="pi pi-check"></i>
                     </button>
-                    <button type="button" 
+                    <button type="button" title="Cancel"
+                            disabled={ posting.status !== 'PENDING'}
                             className="btn btn-warning me-sm-2" 
                             onClick={ e => props.updateStatus (posting, 'CANCELED')}>
-                            Canceled
+                            <i className="pi pi-times"></i>
                     </button>
-                    <button type="button" 
+                    <button type="button" title="Edit"
                             className="btn btn-primary me-sm-2" 
                             onClick={ e => props.edit(posting.id)}>
-                            Edit
+                            <i className="pi pi-pencil"></i>
                     </button>
-                    <button type="button" 
+                    <button type="button" title="Delete"
                             className="btn btn-danger" 
                             onClick={ e => props.delete(posting)}>
-                                Delete
+                            <i className="pi pi-trash"></i>
                     </button>   
                 </td>
             </tr>

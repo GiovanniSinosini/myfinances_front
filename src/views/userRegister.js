@@ -88,8 +88,12 @@ class UserRegister extends React.Component{
                 </FormGroup>
 
                 <div className="btn-toolbar mt-3 ">
-                  <button onClick={this.register} className="btn btn-success me-sm-2 ">Enter</button>
-                  <button onClick={this.cancel} className="btn btn-danger">Cancel</button>
+                  <button onClick={this.register} 
+                          className="btn btn-success me-sm-2 ">
+                          <i className="pi pi-save"/> Save</button>
+                  <button onClick={this.cancel} 
+                          className="btn btn-danger">
+                          <i className="pi pi-times"/> Cancel</button>
                 </div>
               </div>
             </div>

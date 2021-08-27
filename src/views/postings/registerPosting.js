@@ -163,14 +163,18 @@ class RegisterPosting extends React.Component {
                     <div className="btn-toolbar mt-3 ">
                         { this.state.updating ?
                             (
-                            <button onClick={this.updatePosting} className="btn btn-success me-sm-2 ">Update</button>
+                            <button onClick={this.updatePosting} 
+                                    className="btn btn-success me-sm-2 ">
+                                    <i className="pi pi-refresh"/> Update</button>
                             ) : (
-                                <button onClick={this.submit} className="btn btn-success me-sm-2 ">Save</button>
+                                <button onClick={this.submit} 
+                                        className="btn btn-success me-sm-2 ">
+                                        <i className="pi pi-save"/> Save</button>
                                 )
                         }
                         <button className="btn btn-danger"
-                                 onClick={e => this.props.history.push('/consultPostings')}>
-                                Cancel
+                                onClick={e => this.props.history.push('/consultPostings')}>
+                                <i className="pi pi-times"/> Cancel
                         </button>
                     </div>
                 </div>

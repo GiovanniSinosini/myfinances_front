@@ -50,6 +50,10 @@ class ConsultPostings extends React.Component{
             this.postingService
             .search(postingFilter)
             .then ( response => {
+                const list = response.data;
+                if(list.length < 1){
+                    messages.warningMessage("No results found.")
+                }
                 this.setState ( {postings: response.data} )
             }).catch ( error => {
                 console.log(error)
@@ -155,9 +159,12 @@ class ConsultPostings extends React.Component{
                                         onChange={e => this.setState( {status: e.target.value} )} />
                         </FormGroup>
                         <div className="btn-toolbar mt-3 ">
-                            <button onClick={this.search} className="btn btn-success me-sm-2">Search</button>
+                            <button onClick={this.search} 
+                                    className="btn btn-success me-sm-2">
+                                    <i className="pi pi-search"></i> Search</button>
                             <button className="btn btn-danger"
-                                    onClick={this.preparRegister} >Register</button>
+                                    onClick={this.preparRegister}>
+                                        <i className="pi pi-plus"></i> Register</button>
                         </div>
                     </div>
                 </div>
