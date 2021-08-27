@@ -55,6 +55,14 @@ class RegisterPosting extends React.Component {
         const {description, value, month, year, type} = this.state;
         const posting = {description, value, month, year, type, user: userLogged.id};
 
+        try {
+            this.postingsService.validation(posting)
+        } catch (error) {
+            const messagesErrors = error.messages;
+            messagesErrors.forEach(msg => messages.errorMessage(msg))
+            return false
+        }
+
         this.postingsService
                 .save(posting)
                 .then( response => {

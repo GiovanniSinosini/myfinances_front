@@ -1,4 +1,5 @@
 import ApiService from "../apiservice";
+import ErrorValidation from "../exception/errorValidation";
 
 export default class PostingsService extends ApiService{
 
@@ -82,5 +83,31 @@ export default class PostingsService extends ApiService{
     updatePosting (posting){
         return this.put(`/${posting.id}`, posting)
     }
+
+    validation(posting){
+        const errors = [];
+
+        if(!posting.year){
+            errors.push('Enter the year.')
+        }
+        if(!posting.month){
+            errors.push('Enter the month.')
+        }
+        if(!posting.description){
+            errors.push('Enter the description.')
+        }
+        if(!posting.value){
+            errors.push('Enter the value.')
+        }
+        if(!posting.type){
+            errors.push('Enter the type.')
+        }
+
+        if (errors && errors.length > 0){
+            throw new ErrorValidation(errors);
+        }
+
+    }
+
 
 }
