@@ -35,11 +35,11 @@ class Home extends React.Component {
             <p className="lead">
                 <a className="btn btn-primary btn-lg me-sm-2" 
                 href="#/userRegister" 
-                role="button"><i className="fa fa-users"></i>  Register User</a>
+                role="button"><i className="pi pi-plus"></i>  Register User</a>
                 
                 <a className="btn btn-danger btn-lg" 
                 href="#/registerPostings" 
-                role="button"><i className="fa fa-users"></i>  Register Postings</a>
+                role="button"><i className="pi pi-plus"></i>  Register Postings</a>
             </p>
          </div> 
     )
