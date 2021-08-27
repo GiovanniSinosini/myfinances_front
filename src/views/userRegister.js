@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
-import {errorMessage, successMessage} from '../components/toastr'
+import * as messages from '../components/toastr'
 
 import UserService from '../app/service/userService'
 
@@ -22,49 +22,25 @@ class UserRegister extends React.Component{
     this.userService = new UserService();
   }
 
-  validate(){
-    const msgs = []
-
-    if(!this.state.name){
-      msgs.push('The NAME FIELD is required.')
-    }
-    if(!this.state.email){
-      msgs.push('The EMAIL FIELD is required.')
-    } else if (!this.state.email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/) ){
-      msgs.push('Email invalid. Try again.')
-    }
-
-    if(!this.state.password || !this.state.passwordRepeat){
-      msgs.push('The PASSWORD FIELD is required.')
-    } else if (this.state.password !== this.state.passwordRepeat) {
-      msgs.push('The passwords are different. Try again.')
-    }
-    return msgs
-  }
-
   register = () => {
+    
+    const { name, email, password, passwordRepeat } = this.state
+    const user = { name, email, password, passwordRepeat }
 
-    const msgs = this.validate();
-
-    if(msgs && msgs.length > 0){
-      msgs.forEach( (msg, index) => {
-        errorMessage (msg)
-      })
-      return false;
-    }
-
-    const user = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password
+    try {
+      this.userService.validationFormUser(user)
+    } catch (error) {
+        const msgErrors = error.messages
+        msgErrors.forEach(msg => messages.errorMessage(msg))
+        return false
     }
 
     this.userService.saveUser(user)
       .then( response => {
-        successMessage('Successfully registered user. Login to access the system.')
+        messages.successMessage('Successfully registered user. Login to access the system.')
         this.props.history.push('/login')
       }).catch( error => {
-        errorMessage(error.response.data)
+        messages.errorMessage(error.response.data)
       })
   }
 
