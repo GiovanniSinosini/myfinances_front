@@ -13,14 +13,15 @@ import * as messages from '../../components/toastr'
 class RegisterPosting extends React.Component {
 
     state = {
-        id: '',
+        id: null,
         description: '',
         value: '',
         month: '',
         year: '',
         type: '',
         status: '',
-        user: ''
+        user: null,
+        updating: false
     }
 
     constructor(){
@@ -34,7 +35,7 @@ class RegisterPosting extends React.Component {
             this.postingsService
                 .getById(params.id)
                 .then(response => {
-                    this.setState( {...response.data} )
+                    this.setState( {...response.data, updating: true} )
                 }).catch( error => {
                     messages.errorMessage(error.response.data)
                 })
@@ -86,7 +87,7 @@ class RegisterPosting extends React.Component {
         const months = this.postingsService.getListMonths();
 
         return(
-            <Card title="Register Posting">
+            <Card title={this.state.updating ? 'Update Posting' : 'Register Posting'}>
                 <div className="row">
                     <div className="col-md-12">
                     <FormGroup id="inputDescription" label="Description: *">
@@ -152,8 +153,13 @@ class RegisterPosting extends React.Component {
                         </FormGroup>
                     </div>
                     <div className="btn-toolbar mt-3 ">
-                        <button onClick={this.submit} className="btn btn-success me-sm-2 ">Save</button>
-                        <button onClick={this.updatePosting} className="btn btn-success me-sm-2 ">Update</button>
+                        { this.state.updating ?
+                            (
+                            <button onClick={this.updatePosting} className="btn btn-success me-sm-2 ">Update</button>
+                            ) : (
+                                <button onClick={this.submit} className="btn btn-success me-sm-2 ">Save</button>
+                                )
+                        }
                         <button className="btn btn-danger"
                                  onClick={e => this.props.history.push('/consultPostings')}>
                                 Cancel
