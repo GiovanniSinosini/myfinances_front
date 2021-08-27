@@ -14,6 +14,16 @@ export default props => {
                 <td>{posting.status}</td>
                 <td>
                     <button type="button" 
+                            className="btn btn-success me-sm-2" 
+                            onClick={ e => props.updateStatus (posting, 'EFFECTIVE')}>
+                            Effective
+                    </button>
+                    <button type="button" 
+                            className="btn btn-warning me-sm-2" 
+                            onClick={ e => props.updateStatus (posting, 'CANCELED')}>
+                            Canceled
+                    </button>
+                    <button type="button" 
                             className="btn btn-primary me-sm-2" 
                             onClick={ e => props.edit(posting.id)}>
                             Edit

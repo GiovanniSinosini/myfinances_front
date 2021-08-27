@@ -1,3 +1,4 @@
+/* eslint-disable no-whitespace-before-property */
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
@@ -90,6 +91,21 @@ class ConsultPostings extends React.Component{
         this.props.history.push('/registerPostings')
     }
 
+    updateStatus = (posting, status) => {
+        this.postingService
+            .updateStatus(posting.id, status)
+            .then(response => {
+                const postings = this.state.postings;
+                const index = postings.indexOf(posting);
+                if (index !== 1){
+                    posting ['status'] = status;
+                    postings [index] = posting;
+                    this.setState({posting});
+                }
+                messages.successMessage("Updated status successfully.")
+            })
+    }
+
   render(){
   
     const months = this.postingService.getListMonths();
@@ -152,7 +168,8 @@ class ConsultPostings extends React.Component{
                     <div className="bs-component">
                         <PostingsTable postings={this.state.postings}
                                     delete={this.confirm}
-                                    edit={this.edit} />
+                                    edit={this.edit}
+                                    updateStatus={this.updateStatus} />
                     </div>
                 </div>
             </div>

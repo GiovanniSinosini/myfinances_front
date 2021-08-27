@@ -106,7 +106,10 @@ export default class PostingsService extends ApiService{
         if (errors && errors.length > 0){
             throw new ErrorValidation(errors);
         }
+    }
 
+    updateStatus(id, status){
+        return this.put(`/${id}/update-status`, {status})
     }
 
 
