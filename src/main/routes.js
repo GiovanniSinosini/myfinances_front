@@ -7,13 +7,12 @@ import UserRegister from '../views/userRegister';
 import Home from '../views/home'
 import ConsultPostings from '../views/postings/consultPostings';
 import RegisterPostings from '../views/postings/registerPosting';
+import { AuthConsumer } from '../main/authenticationProvider' 
 
-import AuthService from '../app/service/authService';
-
-function RoutesAuthenticated( {component: Component, ...props} ){
+function RoutesAuthenticated( {component: Component, isUserAuthenticated, ...props} ){
     return (
         <Route {...props} render={ (componentProps) => {
-            if(AuthService.isUserAuthenticated()){
+            if(isUserAuthenticated){
                 return (
                     <Component {...componentProps}/>
                 )
@@ -26,19 +25,24 @@ function RoutesAuthenticated( {component: Component, ...props} ){
     )
 }
 
-function Routes(){
+function Routes(props){
     return(
         <HashRouter>
             <Switch>
                 <Route path="/login" component={Login}/>
                 <Route path="/userRegister" component={UserRegister}/>
                 
-                <RoutesAuthenticated path="/home" component={Home}/>
-                <RoutesAuthenticated path="/consultPostings" component={ConsultPostings}/>
-                <RoutesAuthenticated path="/registerPostings/:id?" component={RegisterPostings}/>
+                <RoutesAuthenticated isUserAuthenticated={props.isUserAuthenticated} path="/home" component={Home}/>
+                <RoutesAuthenticated isUserAuthenticated={props.isUserAuthenticated} path="/consultPostings" component={ConsultPostings}/>
+                <RoutesAuthenticated isUserAuthenticated={props.isUserAuthenticated} path="/registerPostings/:id?" component={RegisterPostings}/>
             </Switch>
         </HashRouter>
     )
 }
 
-export default Routes
+// eslint-disable-next-line
+export default () => (
+    <AuthConsumer>
+        { (context) => (<Routes isUserAuthenticated={context.isAuthenticated} />) }
+    </AuthConsumer>
+)
