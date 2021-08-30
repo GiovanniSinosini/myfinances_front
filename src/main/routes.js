@@ -8,14 +8,12 @@ import Home from '../views/home'
 import ConsultPostings from '../views/postings/consultPostings';
 import RegisterPostings from '../views/postings/registerPosting';
 
-const isUserAuthenticated = () => {
-    return true;
-}
+import AuthService from '../app/service/authService';
 
 function RoutesAuthenticated( {component: Component, ...props} ){
     return (
         <Route {...props} render={ (componentProps) => {
-            if(isUserAuthenticated()){
+            if(AuthService.isUserAuthenticated()){
                 return (
                     <Component {...componentProps}/>
                 )
