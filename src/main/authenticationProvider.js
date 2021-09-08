@@ -1,7 +1,6 @@
 import React from 'react'
 
 import AuthService from '../app/service/authService';
-import ApiService from '../app/apiservice';
 import jwt from 'jsonwebtoken';
 
 export const AuthContext = React.createContext();
@@ -24,7 +23,6 @@ class AuthenticationProvider extends React.Component {
             name: claims.name
         }
 
-        ApiService.registerToken(token)
         AuthService.login(user, token);
         this.setState( {isAuthenticated: true, userAuthenticated: user} )
     }
