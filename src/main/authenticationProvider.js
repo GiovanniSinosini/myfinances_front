@@ -23,15 +23,26 @@ class AuthenticationProvider extends React.Component {
             id: claims.userid,
             name: claims.name
         }
-        
+
         ApiService.registerToken(token)
-        AuthService.login(user);
+        AuthService.login(user, token);
         this.setState( {isAuthenticated: true, userAuthenticated: user} )
     }
 
     exitSession = (user) => {
         AuthService.removeUserAuthenticated();
         this.setState( {isAuthenticated: false, userAuthenticated: null} )
+    }
+
+    async componentDidMount(){
+        const isAuthenticated = AuthService.isUserAuthenticated()
+        if(isAuthenticated){
+            const user = AuthService.refreshSession()
+            this.setState({
+                isAuthenticated: true,
+                userAuthenticated: user
+            })
+        }
     }
 
     render(){
