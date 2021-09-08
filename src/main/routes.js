@@ -8,10 +8,11 @@ import Home from '../views/home'
 import ConsultPostings from '../views/postings/consultPostings';
 import RegisterPostings from '../views/postings/registerPosting';
 import { AuthConsumer } from '../main/authenticationProvider' 
+import LandingPage from '../views/landingPage';
 
 function RoutesAuthenticated( {component: Component, isUserAuthenticated, ...props} ){
     return (
-        <Route {...props} render={ (componentProps) => {
+        <Route exact {...props} render={ (componentProps) => {
             if(isUserAuthenticated){
                 return (
                     <Component {...componentProps}/>
@@ -29,7 +30,7 @@ function Routes(props){
     return(
         <HashRouter>
             <Switch>
-                <Route exact path="/" component={Login}/>
+                <Route exact path="/" component={LandingPage}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/userRegister" component={UserRegister}/>
                 
