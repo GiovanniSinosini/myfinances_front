@@ -1,13 +1,20 @@
 import axios from "axios";
 
 const httpClient = axios.create({
-   baseURL: 'https://myfinances-7-api.herokuapp.com' 
+   baseURL: 'http://localhost:8080',
+   withCredentials: true 
 })
 
 class ApiService {
 
     constructor(apiurl){
         this.apiurl = apiurl;
+    }
+
+    static registerToken(token){
+        if (token){
+            httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        }
     }
 
     post(url, object){
