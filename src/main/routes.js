@@ -9,16 +9,18 @@ import ConsultPostings from '../views/postings/consultPostings';
 import RegisterPostings from '../views/postings/registerPosting';
 import { AuthConsumer } from '../main/authenticationProvider' 
 import LandingPage from '../views/landingPage';
+import LocalStorageService from '../app/service/localStorageService';
 
 function RoutesAuthenticated( {component: Component, isUserAuthenticated, ...props} ){
     return (
-        <Route exact {...props} render={ (componentProps) => {
-            if(isUserAuthenticated){
+        <Route {...props} render={ (componentProps) => {
+            const userAuth = LocalStorageService.getItem('access_token')
+            if(userAuth){
                 return (
                     <Component {...componentProps}/>
                 )
             } else{
-                return(
+                return( 
                     <Redirect to={ {pathname: '/login', state : { from: componentProps.location}} } />
                 )
             }

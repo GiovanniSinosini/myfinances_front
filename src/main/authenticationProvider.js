@@ -2,6 +2,7 @@ import React from 'react'
 
 import AuthService from '../app/service/authService';
 import jwt from 'jsonwebtoken';
+import ApiService from '../app/apiservice';
 
 export const AuthContext = React.createContext();
 export const AuthConsumer = AuthContext.Consumer;
@@ -22,7 +23,7 @@ class AuthenticationProvider extends React.Component {
             id: claims.userid,
             name: claims.name
         }
-
+        ApiService.registerToken(token);
         AuthService.login(user, token);
         this.setState( {isAuthenticated: true, userAuthenticated: user} )
     }
