@@ -1,5 +1,3 @@
-![](/docs/images/animation.gif)
-
 ## :diamond_shape_with_a_dot_inside: MY FINANCES system is for managing personal payments and receipts.
 
 Repository designed to explore the knowledge of React development using Java with SpringBoot in backend.
@@ -8,6 +6,9 @@ Repository designed to explore the knowledge of React development using Java wit
 
 Software developed with authentication and ability to manage personal payments, receipts, and users (perform CRUD operations - create, read, update, delete).
 
+## Below is a little experience with the software
+
+![](/docs/images/animation.gif)
 
 ## :gear: Technologies and Frameworks
 
