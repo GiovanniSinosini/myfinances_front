@@ -1,7 +1,8 @@
 <br/>
 
-## :diamond_shape_with_a_dot_inside: MY FINANCES system is for managing personal payments and receipts.
-<br/>
+# :diamond_shape_with_a_dot_inside: MY FINANCES SYSTEM 
+### Managing personal payments and receipts.
+
 Repository designed to explore the knowledge of React development using Java with SpringBoot in backend.
 <br/>
 <br/>
@@ -9,6 +10,7 @@ Repository designed to explore the knowledge of React development using Java wit
 ## :dart:  Software purpose
 
 Software developed with authentication and ability to manage personal payments, receipts, and users (perform CRUD operations - create, read, update, delete).
+<br/>
 <br/>
 
 ## :mag_right:  Below is a little experience with the software
