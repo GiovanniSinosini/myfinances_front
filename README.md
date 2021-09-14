@@ -1,4 +1,3 @@
-<br/>
 
 # :diamond_shape_with_a_dot_inside: MY FINANCES SYSTEM 
 ### Managing personal payments and receipts.
