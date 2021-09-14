@@ -34,9 +34,9 @@ Software developed with authentication and ability to manage personal payments, 
 
 ## :star2: Awesome Topic :boom:
 
-<p>Click this button <a class="btn btn-lg btn-primary" href="https://myfinances-7-app.herokuapp.com/#/" target="_blank">MyFinances</a> to access the System. (It's in the cloud. It may take a few minutes to access.)</p>
+<p>Click here <a class="btn btn-lg btn-primary" href="https://myfinances-7-app.herokuapp.com/#/" target="_blank">MYFINANCES</a> to access the System. (It's in the cloud. It may take a few minutes to access.)</p>
 
-<p>Click this button <a class="btn btn-lg btn-primary" href="" target="_blank">Video</a> to access an explanatory VIDEO.(Video under construction.)</p>
+<p>Click here <a class="btn btn-lg btn-primary" href="" target="_blank">VIDEO</a> to access an explanatory VIDEO.(Video under construction.)</p>
 
 <br/>
 
