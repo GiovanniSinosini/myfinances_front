@@ -34,7 +34,8 @@ class Login extends React.Component {
         this.context.startSession(response.data)
         this.props.history.push('/home')
     }).catch ( error => {
-         errorMessage(error.response.data)
+        this.setState( {spinner: false} )
+        errorMessage(error.response.data)
     })
   }
 
