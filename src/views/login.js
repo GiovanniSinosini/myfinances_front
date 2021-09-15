@@ -1,6 +1,7 @@
 import React from 'react'
 
 import  {withRouter} from 'react-router-dom'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 import UserService from '../app/service/userService'
 import { errorMessage } from '../components/toastr'
@@ -14,19 +15,22 @@ class Login extends React.Component {
 
   state = {
     email: '',
-    password: ''
+    password: '',
+    spinner: false
   }
-
+  
   constructor(){
     super();
     this.userService = new UserService();
   }
 
   enter = () => {
+    this.setState( {spinner: true} );
     this.userService.authenticate({
       email: this.state.email,
       password: this.state.password
     }).then ( response =>{
+        this.setState( {spinner: false} )
         this.context.startSession(response.data)
         this.props.history.push('/home')
     }).catch ( error => {
@@ -71,11 +75,15 @@ class Login extends React.Component {
                         <button onClick={this.enter} 
                                 className="btn btn-success me-sm-2">
                                 <i className="pi pi-sign-in"/> Enter</button>
+                                
                         <button onClick={this.prepareToRegister} 
                                 className="btn btn-danger">
                                 <i className="pi pi-plus"/> Register</button>
                          </div>
-
+                         <div className="btn-toolbar mt-3 " >
+                           <br/>
+                           {this.state.spinner ? <ProgressSpinner style={{width: '50px', height: '50px'}} strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"/> : false }
+                          </div>
                       </fieldset>
                     </div>
                   </div>
