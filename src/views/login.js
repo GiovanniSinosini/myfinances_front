@@ -85,6 +85,7 @@ class Login extends React.Component {
                            <br/>
                            {this.state.spinner ? <ProgressSpinner style={{width: '50px', height: '50px'}} strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"/> : false }
                           </div>
+                          
                       </fieldset>
                     </div>
                   </div>
