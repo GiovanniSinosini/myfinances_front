@@ -5,6 +5,9 @@ import { withRouter } from 'react-router-dom'
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
 import * as messages from '../components/toastr'
+import {Password} from 'primereact/password';
+import { Divider } from 'primereact/divider';
+import '../../src/custom.css';
 
 import UserService from '../app/service/userService'
 
@@ -49,6 +52,18 @@ class UserRegister extends React.Component{
   }
 
   render(){
+    const footer = (
+      <React.Fragment>
+          <Divider />
+          <p className="p-mt-2">Suggestions</p>
+          <ul className="p-pl-8 p-ml-2 p-mt-0" style={{lineHeight: '1.5'}}>
+              <li>At least one lowercase</li>
+              <li>At least one uppercase</li>
+              <li>At least one numeric</li>
+              <li>Minimum 8 characters</li>
+          </ul>
+      </React.Fragment>
+  );
     return(
       <Card title="Register User">
         <div className="row">
@@ -72,18 +87,22 @@ class UserRegister extends React.Component{
                 </FormGroup>
 
                 <FormGroup label="Password *" hrmlfor= "inputPassword">
-                  <input  type="password"
-                      className="form-control"
+                  <Password  type="password"
                       id="inputPassword" 
                       name="password"
-                      onChange={ e => this.setState({password: e.target.value}) }/>  
+                      onChange={ e => this.setState({password: e.target.value}) }
+                      toggleMask='true'
+                      footer={footer}
+                      inputClassName='p-password'/>  
                 </FormGroup>
 
                 <FormGroup label="Repeat the password *" hrmlfor= "inputPasswordRep">
-                  <input  type="password"
-                      className="form-control"
+                  <Password  type="password"
+                      toggleMask='true'
+                      feedback={false}
                       id="inputPasswordRep" 
                       name="passwordRep"
+                      inputClassName='p-password' 
                       onChange={ e => this.setState({passwordRepeat: e.target.value}) }/>  
                 </FormGroup>
 

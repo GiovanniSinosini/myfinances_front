@@ -31,10 +31,12 @@ class UserService extends ApiService{
         errors.push('Email invalid. Try again.')
         }
 
-        if(!user.password || !user.passwordRepeat){
+        if(!user.password || !user.passwordRepeat ){
         errors.push('PASSWORD FIELDS is required.')
         } else if (user.password !== user.passwordRepeat) {
         errors.push('The passwords are different. Try again.')
+        } else if (!user.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/)) {
+        errors.push('Password is weak. Try again!');
         }
         
         if (errors && errors.length > 0){

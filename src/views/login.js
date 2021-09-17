@@ -9,6 +9,8 @@ import { AuthContext } from '../main/authenticationProvider'
 
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
+import {Password} from 'primereact/password';
+import '../../src/custom.css';
 
 
 class Login extends React.Component {
@@ -43,7 +45,7 @@ class Login extends React.Component {
     this.props.history.push('/userRegister')
   }
 
-  render(){           
+  render(){      
     return(
         <div className="row">
           <div className="col-md-6" style={ {position:'relative', left: '300px'}}>
@@ -57,21 +59,23 @@ class Login extends React.Component {
                           <input type="email" 
                           value={this.state.email}
                           onChange = {e => this.setState({email: e.target.value}) } 
-                          className="form-control"         
+                          className="p-password2"         
                           id="exampleInputEmail1" 
                           aria-describedby="emailHelp" 
                           placeholder="Enter the email"/>
                          </FormGroup>
 
                          <FormGroup label="Password *" htmlFor="exampleInputPassword1">
-                          <input type="password" 
+                          <Password type="password" 
                           value={this.state.password}
                           onChange = {e => this.setState ({password: e.target.value})}
-                          className="form-control" 
                           id="exampleInputPassword1" 
-                          placeholder="Password"/>
+                          placeholder="Password"
+                          toggleMask='true'
+                          inputClassName='p-password2'
+                          />
                          </FormGroup>
-                        
+                       
                          <div className="btn-toolbar mt-3 ">
                         <button onClick={this.enter} 
                                 className="btn btn-success me-sm-2">
